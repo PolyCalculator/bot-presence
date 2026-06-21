@@ -12,6 +12,10 @@
         "node": ">=20"
     },
     "dependencies": {
-        "discord.js": "^14.16.3"
+        "discord.js": "^14.26.4",
+        "dotenv": "^17.4.2"
+    },
+    "overrides": {
+        "undici": "^6.27.0"
     }
 }

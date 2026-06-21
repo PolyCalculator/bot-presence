@@ -11,6 +11,7 @@
 // PolyCalculator repo — the only shared value is DISCORD_BOT_TOKEN.
 
 import { Client, GatewayIntentBits, ActivityType } from 'discord.js'
+import 'dotenv/config'
 
 const token = process.env.DISCORD_BOT_TOKEN
 if (!token) {
@@ -22,12 +23,25 @@ if (!token) {
 // No message/member intents — this process reads nothing.
 const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 
+// The original gateway bot rotated its activity every 10s between two command
+// hints. Reproduced verbatim here — the only behavior this process exists to
+// carry forward from the pre-serverless bot/index.js.
+const ACTIVITIES = ['/units', '/help o']
+const ROTATE_MS = 10_000
+
 client.once('clientReady', (c) => {
     console.log(`Presence online as ${c.user.tag}`)
-    c.user.setPresence({
-        status: 'online',
-        activities: [{ name: '/c • polytopia combat', type: ActivityType.Playing }],
-    })
+    let i = 0
+    const show = () =>
+        c.user.setPresence({
+            status: 'online',
+            activities: [{ name: ACTIVITIES[i], type: ActivityType.Playing }],
+        })
+    show()
+    setInterval(() => {
+        i = (i + 1) % ACTIVITIES.length
+        show()
+    }, ROTATE_MS)
 })
 
 // discord.js handles heartbeats, resumes, and reconnect/backoff internally.
