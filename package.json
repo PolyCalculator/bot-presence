@@ -1,0 +1,17 @@
+{
+    "name": "bot-presence",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "description": "Always-on gateway sidecar that keeps the PolyCalculator bot showing online. Sets presence only — handles no commands.",
+    "main": "index.mjs",
+    "scripts": {
+        "start": "node index.mjs"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "dependencies": {
+        "discord.js": "^14.16.3"
+    }
+}
