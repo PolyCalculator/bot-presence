@@ -39,4 +39,4 @@ bot blinks offline — so disable any auto-stop / scale-to-zero behavior.
 
 ## Related
 
-- [PolyCalculator](https://github.com/PolyCalculator) — the serverless bot + API.
+- [PolyCalculator](https://github.com/PolyCalculator/PolyCalculator) — the serverless bot + API.
