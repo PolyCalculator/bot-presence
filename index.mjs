@@ -55,8 +55,8 @@ client.on('error', (err) => console.error('Client error:', err))
 
 client.login(token)
 
-// Fly sends SIGTERM/SIGINT on deploy/stop — close cleanly so the dot drops
-// fast instead of lingering as a ghost session.
+// The host sends SIGTERM/SIGINT on deploy/stop — close cleanly so the dot
+// drops fast instead of lingering as a ghost session.
 for (const sig of ['SIGTERM', 'SIGINT']) {
     process.on(sig, () => {
         console.log(`${sig} received — destroying client`)

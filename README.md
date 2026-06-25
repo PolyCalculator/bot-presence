@@ -28,18 +28,14 @@ npm install
 DISCORD_BOT_TOKEN=xxx npm start
 ```
 
-## Deploy (Fly.io)
+## Deploy
 
-```bash
-fly launch --no-deploy        # first time; accept the existing fly.toml
-fly secrets set DISCORD_BOT_TOKEN=xxx
-fly deploy
-```
+The `Dockerfile` builds a minimal image that runs on any container host. Set
+`DISCORD_BOT_TOKEN` in the environment and run a single instance.
 
-`fly.toml` pins one machine running 24/7 (`min_machines_running = 1`,
-`auto_stop_machines = false`). If the machine ever scales to zero the gateway
-connection drops and the bot blinks offline — that's the one setting that
-matters.
+The one rule that matters: this process must stay running 24/7. If the host
+scales it to zero or sleeps it on idle, the gateway connection drops and the
+bot blinks offline — so disable any auto-stop / scale-to-zero behavior.
 
 ## Related
 
