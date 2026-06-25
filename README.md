@@ -33,6 +33,16 @@ DISCORD_BOT_TOKEN=xxx npm start
 The `Dockerfile` builds a minimal image that runs on any container host. Set
 `DISCORD_BOT_TOKEN` in the environment and run a single instance.
 
+With Docker Compose, put `DISCORD_BOT_TOKEN` in a `.env` file (LF line endings)
+and run:
+
+```bash
+docker compose up --build -d
+```
+
+`--build` rebuilds before starting; drop it to reuse the existing image. Stop
+with `docker compose down`.
+
 The one rule that matters: this process must stay running 24/7. If the host
 scales it to zero or sleeps it on idle, the gateway connection drops and the
 bot blinks offline — so disable any auto-stop / scale-to-zero behavior.
