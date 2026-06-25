@@ -1,5 +1,5 @@
 # Minimal image for the presence sidecar.
-FROM node:20-slim
+FROM node:22-alpine
 
 WORKDIR /app
 
